@@ -1,5 +1,5 @@
 # uncomment to run on gpu, if available
-#using CuArrays
+# using CuArrays
 
 using Flux
 using Flux: onehot, argmax, chunk, batchseq, throttle, crossentropy
@@ -12,7 +12,7 @@ isfile("input.txt") ||
   download("http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt",
            "input.txt")
 
-text = collect(readstring("input.txt"))
+text = collect(read(open("input.txt", "r"), String))
 alphabet = [unique(text)..., '_']
 text = map(ch -> onehot(ch, alphabet), text)
 stop = onehot('_', alphabet)
