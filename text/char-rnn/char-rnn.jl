@@ -1,15 +1,13 @@
-# uncomment to run on gpu, if available
-# using CuArrays
-
 using Flux
-using Flux: onehot, argmax, chunk, batchseq, throttle, crossentropy
+using Flux: onehot, chunk, batchseq, throttle, crossentropy
 using StatsBase: wsample
 using Base.Iterators: partition
+# using CuArrays
 
 cd(@__DIR__)
 
 isfile("input.txt") ||
-  download("http://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt",
+  download("https://cs.stanford.edu/people/karpathy/char-rnn/shakespeare_input.txt",
            "input.txt")
 
 text = collect(read(open("input.txt", "r"), String))
